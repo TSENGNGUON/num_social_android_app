@@ -5,5 +5,10 @@ data class Post(
     val name : String,
     val username: String,
     val imageUrl: Int,
-    val content: String
+    val content: String,
+    val count: Int,
+    val repostCount: Int,
+    val isLike: Boolean,
+    val isRepost: Boolean,
+    val isSave: Boolean
 )

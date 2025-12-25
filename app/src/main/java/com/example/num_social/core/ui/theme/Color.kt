@@ -18,3 +18,6 @@ val GreyText = Color(0xFFE1E1E1)
 val GreyText2 = Color(0xFF536471)
 val BlueText = Color(0xFF648DDB)
 val ContentColor = Color(0xFF0F1419)
+
+val LikeColor = Color(0xFFFE5196)
+val BookMarkColor = Color(0xFFFFEA73)
