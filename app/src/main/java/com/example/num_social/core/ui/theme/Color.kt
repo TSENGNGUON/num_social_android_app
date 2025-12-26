@@ -21,3 +21,4 @@ val ContentColor = Color(0xFF0F1419)
 
 val LikeColor = Color(0xFFFE5196)
 val BookMarkColor = Color(0xFFFFEA73)
+val FocusColor = Color(0xFFF77062)

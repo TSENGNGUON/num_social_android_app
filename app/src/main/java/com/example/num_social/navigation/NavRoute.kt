@@ -9,10 +9,15 @@ sealed class NavRoute(val path: String){
     }
     object SetNewPassword: NavRoute("setNewPassword")
     object Home: NavRoute("home")
-    object Profile: NavRoute("profile"){
-        val id = "id"
-        val showDetails = "showDetails"
-    }
+    // Define Bottom Navigation
+    object Search: NavRoute("search")
+    object Favorite: NavRoute("favorite")
+    object Notification: NavRoute("notification")
+    object BookMark: NavRoute("bookMark")
+//    object Profile: NavRoute("profile"){
+//        val id = "id"
+//        val showDetails = "showDetails"
+//    }
 
     fun withArgs(vararg args: String): String{
         return buildString {
