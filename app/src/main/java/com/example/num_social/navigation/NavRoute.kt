@@ -10,8 +10,8 @@ sealed class NavRoute(val path: String){
     object SetNewPassword: NavRoute("setNewPassword")
     object Home: NavRoute("home")
     // Define Bottom Navigation
-    object Search: NavRoute("search")
-    object Favorite: NavRoute("favorite")
+    object Explore: NavRoute("explore")
+    object Follow: NavRoute("follow")
     object Notification: NavRoute("notification")
     object BookMark: NavRoute("bookMark")
 //    object Profile: NavRoute("profile"){

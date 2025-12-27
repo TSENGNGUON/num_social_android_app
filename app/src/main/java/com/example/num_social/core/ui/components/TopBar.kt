@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -20,12 +21,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.num_social.R
 import com.example.num_social.core.ui.theme.PacificoFont
+import com.example.num_social.navigation.NavRoute
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(){
+fun TopBar(navController: NavHostController){
+    val backStackEntry by  navController.currentBackStackEntryAsState()
+    val currentRoute = backStackEntry?.destination?.route
+    val showPostButton = NavRoute.Home.path
+    val shouldShowPostButton = currentRoute == showPostButton
+
     val profileSize = 48.dp
     TopAppBar(
         modifier = Modifier.padding(bottom = 16.dp),
@@ -44,12 +53,14 @@ fun TopBar(){
                 modifier = Modifier.padding(bottom = 10.dp)
             ){
                 // Add new Post
-                IconButton(onClick = {}) {
-                    Image(
-                        painter = painterResource(id = R.drawable.add_icon),
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
-                    )
+                if (shouldShowPostButton) {
+                    IconButton(onClick = {}) {
+                        Image(
+                            painter = painterResource(id = R.drawable.add_icon),
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
                 }
                 // Profile
                 IconButton(

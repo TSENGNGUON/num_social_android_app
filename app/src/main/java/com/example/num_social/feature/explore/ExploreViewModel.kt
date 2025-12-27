@@ -1,4 +1,4 @@
-package com.example.num_social.feature.home
+package com.example.num_social.feature.explore
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -10,21 +10,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class HomeViewModel: ViewModel(){
-    private val _postsState = 
-        MutableStateFlow<List<Post>>(emptyList())
-    val postsState = _postsState.asStateFlow()
+class ExploreViewModel : ViewModel() {
+    private val _exploreState = MutableStateFlow<List<Post>>(emptyList())
+    val exploreState = _exploreState.asStateFlow()
 
     init {
-        //Simulate API Call
-        fetchPosts()
+        fetchExplorePost()
     }
 
-    // Display data for post
-    private fun fetchPosts(){
+    private fun fetchExplorePost() {
         viewModelScope.launch {
-            // mock data and we can replace with the real API data
-            val posts = listOf(
+            val explorePosts = listOf(
                 Post(
                     "1",
                     "Meng Sea",
@@ -50,7 +46,6 @@ class HomeViewModel: ViewModel(){
                     imageUrls = listOf(
                         R.drawable.profile,
                         R.drawable.profile,
-                        R.drawable.profile
                     ),
                     caption = "Happy chrismas",
                     likesCount = 400,
@@ -68,8 +63,6 @@ class HomeViewModel: ViewModel(){
                     "Peng Chaitit",
                     imageUrls = listOf(
                         R.drawable.profile,
-                        R.drawable.profile,
-                        R.drawable.profile
                     ),
                     caption = "Test content",
                     likesCount = 30,
@@ -83,36 +76,37 @@ class HomeViewModel: ViewModel(){
                     )
                 ),
             )
-            _postsState.value = posts
+
+            _exploreState.value = explorePosts
         }
     }
-    // Liked or Fav action
-    fun likePost(postId: String, isLiked: Boolean) {
-        // Update state in viewModel
-        _postsState.value = _postsState.value.map {
-            post ->
-            if (post.id == postId) {
-                post.copy( isLike = isLiked)
-            }
-            else{
+
+    fun likePost(postId: String, isLiked: Boolean){
+        _exploreState.value = _exploreState.value.map { post ->
+            if (post.id == postId){
+                post.copy(isLike = isLiked)
+            }else {
                 post
             }
         }
-        // Here you would also call your repository to update the API/database
         updateApi(postId, isLiked)
+
     }
-    // Repost action
+
     fun repost(postId: String, isRepost: Boolean){
-        _postsState.value = _postsState.value.map { post ->
+        _exploreState.value = _exploreState.value.map {
+            post ->
             if (post.id == postId){
                 post.copy(isReposted = isRepost)
             }else{
                 post
             }
         }
+        updateApi(postId, isRepost)
     }
+
     fun save(postId: String, isSave: Boolean){
-        _postsState.value = _postsState.value.map { post ->
+        _exploreState.value = _exploreState.value.map {post ->
             if (post.id == postId){
                 post.copy(isSave = isSave)
             }else{
@@ -120,7 +114,7 @@ class HomeViewModel: ViewModel(){
             }
         }
     }
-    // Simulate
+
     private fun updateApi(postId: String, isLiked: Boolean){
         Log.d("updateApi", "postId: $postId,d: $isLiked")
     }

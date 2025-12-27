@@ -16,6 +16,7 @@ val Pink40 = Color(0xFF7D5260)
 val FbColor = Color(0xFF1977F3)
 val GreyText = Color(0xFFE1E1E1)
 val GreyText2 = Color(0xFF536471)
+val GreyText3 = Color(0xFF536471)
 val BlueText = Color(0xFF648DDB)
 val ContentColor = Color(0xFF0F1419)
 
